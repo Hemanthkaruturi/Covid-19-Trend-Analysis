@@ -311,7 +311,7 @@ ui <- dashboardPage(skin = "black",
       menuItem("Nation Level", tabName = "dashboard", icon = icon("dashboard")),
       menuItem("State Level", tabName = "statewise", icon = icon("th")),
       menuItem("Source Data", icon = icon("database"), href = "https://api.covid19india.org/"),
-      menuItem(" Source code", icon = icon("github"), href = "https://github.com/Richard-Barrett/Miradashboard")
+      menuItem(" Source code", icon = icon("github"), href = "https://github.com/Hemanthkaruturi/Covid-19-Trend-Analysis/")
     )
   ),
   dashboardBody(
