@@ -260,12 +260,12 @@ covid_pred[start:end,'date'] <- seq(as.Date(today),as.Date(end_day),by = 1)
 #Confirmed <- cumsum(daily_state_data[daily_state_data$STATE == "Total","Confirmed"])[length(daily_state_data[daily_state_data$STATE == "Total","Confirmed"])]
 #Deaths <- cumsum(daily_state_data[daily_state_data$STATE == "Total","Deaths"])[length(daily_state_data[daily_state_data$STATE == "Total","Deaths"])]
 #Recovered <- cumsum(daily_state_data[daily_state_data$STATE == "Total","Recovered"])[length(daily_state_data[daily_state_data$STATE == "Total","Recovered"])]
-Confirmed <- covid_state[covid_state$STATE == "Total","CONFIRMED"]
-Deaths <- covid_state[covid_state$STATE == "Total","DEATHS"]
-Recovered <- covid_state[covid_state$STATE == "Total","RECOVERED"]
-#Confirmed <- sum(covid_data$confirmed)
-#Deaths <- sum(covid_data$deaths)
-#Recovered <- sum(covid_data$recovered)
+#Confirmed <- covid_state[covid_state$STATE == "Total","CONFIRMED"]
+#Deaths <- covid_state[covid_state$STATE == "Total","DEATHS"]
+#Recovered <- covid_state[covid_state$STATE == "Total","RECOVERED"]
+Confirmed <- sum(covid_data$confirmed)
+Deaths <- sum(covid_data$deaths)
+Recovered <- sum(covid_data$recovered)
 Active <- Confirmed-Deaths-Recovered
 Tested <-  total_tested[length(total_tested)]
 
@@ -311,7 +311,7 @@ ui <- dashboardPage(skin = "black",
       menuItem("Nation Level", tabName = "dashboard", icon = icon("dashboard")),
       menuItem("State Level", tabName = "statewise", icon = icon("th")),
       menuItem("Source Data", icon = icon("database"), href = "https://api.covid19india.org/"),
-      menuItem(" Source code", icon = icon("github"), href = "https://github.com/Hemanthkaruturi/Covid-19-Trend-Analysis/")
+      menuItem(" Source code", icon = icon("github"), href = "https://github.com/Hemanthkaruturi/Covid-19-Trend-Analysis")
     )
   ),
   dashboardBody(
@@ -418,8 +418,7 @@ ui <- dashboardPage(skin = "black",
           box(
             column(12,DTOutput("state_table")),
             width = '350px',
-            height = '630px',
-            extensions=c('ColReorder','Responsive')
+            height = '630px'
           )
           
           
@@ -757,7 +756,7 @@ server <- function(input, output, session) {
                                                                                                     hoverinfo = 'text', text=~hover.text('Date','Cases',DISTRICT,paste0(round(CONFIRMED,0))),
                                                                                                     marker = list(color = color1,
                                                                                                                   line = list(color = color2, width = 1.5))) %>%
-      layout(xaxis = list(title = "Date"),
+      layout(xaxis = list(title = "District"),
              yaxis = list(title = "Confirmed")) %>% config(displaylogo = FALSE)
   )
     
